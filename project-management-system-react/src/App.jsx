@@ -1,21 +1,35 @@
 
 import './App.css'
 import Home from './pages/Home/Home'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from './pages/Navbar/Navbar';
 import { Route, Routes } from 'react-router-dom';
 import ProjectDetails from './pages/ProjectDetails/ProjectDetails';
 import IssueDetails from './pages/IssueDetails/IssueDetails';
 import Subscription from './pages/subsription/Subscription';
 import Auth from './pages/Auth/Auth';
+import { getUser } from './Redux/Auth/Action';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { fetchProjects } from './Redux/Project/Action';
 
 function App() {
   // const [count, setCount] = useState(0)
+  const dispatch = useDispatch();
+  const {auth} = useSelector(store=> store)
+
+  useEffect(() =>{
+    dispatch(getUser())
+    dispatch(fetchProjects({ }))
+    // console.log("hiii")
+    console.log("fetch",fetchProjects({}));
+  },[auth.jwt])
 
   return (
     <>
 {   
-  false? <div>
+  auth.user? <div>
+
      <Navbar/>
     
      <Routes>

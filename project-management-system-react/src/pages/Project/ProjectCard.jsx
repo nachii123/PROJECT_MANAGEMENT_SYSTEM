@@ -17,10 +17,10 @@ const ProjectCard=()=> {
             <div className='flex justify-between'>
                 <div className='flex items-center gap-5'>
                     <h1 onClick={()=>navigate("/project/3")} className='cursor-pointer font-bold text-lg'>
-                        Create Ecommerce Project
+                       Name
                     </h1>
                   <DotFilledIcon/>
-                  <p className='text-sm text-gray-400'>fullstack</p>
+                  <p className='text-sm text-gray-400'>Category</p>
                 </div>
                 <div>
 
@@ -43,15 +43,19 @@ const ProjectCard=()=> {
                 </div>
             </div>
             <p className='text-gray-500 text-sm'> 
-               Lorem ipsum dolor sit amet, consectetur adipisicin</p>
+               Hii</p>
         </div>
 
         <div>
-          {[1,1,1,1].map((item)=> <Badge key={item} variant="outline">{"frontend"}</Badge>)}
+          {[1,1,1,1].map((item)=> <Badge key={item} variant="outline">{"hii"}</Badge>)}
         </div>
      </div>
     </Card>
   )
 }
 
-export default ProjectCard
+export default ProjectCard;
+
+
+
+

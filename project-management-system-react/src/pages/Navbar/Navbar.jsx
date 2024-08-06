@@ -6,10 +6,20 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/compon
 import { PersonIcon } from '@radix-ui/react-icons'
 import { DropdownMenuItem } from '@/components/ui/dropdown-menu'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '@/Redux/Auth/Action'
 
 
 const Navbar=()=> {
-    const navigate = useNavigate()
+  const {auth} = useSelector(store=> store)
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const handleLogout=()=>{
+        dispatch(logout())
+        
+    }
   return (
     <div className='border-b py-4 px-5 flex items-center justify-between w-full'>
 
@@ -41,12 +51,12 @@ const Navbar=()=> {
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem onClick={handleLogout}>
                         LogOut
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
-            <p>Nachiket</p>
+            <p>{auth.user?.fullName}</p>
 
         </div>
 
