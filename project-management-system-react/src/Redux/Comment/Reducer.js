@@ -36,7 +36,7 @@ const commentReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                comments: action.comments
+                comments: action.comment
             };
         case actionTypes.CREATE_COMMENT_FAILURE:
         case actionTypes.DELETE_COMMENT_FAILURE:

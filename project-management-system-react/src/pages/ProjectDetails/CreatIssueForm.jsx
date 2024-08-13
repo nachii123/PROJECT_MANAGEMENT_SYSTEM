@@ -2,19 +2,33 @@ import { Button } from "@/components/ui/button";
 import { DialogClose } from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { creatIssue } from "@/Redux/Issue/Action";
+// import { title } from "process";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom"
 
 
-const CreatIssueForm=()=> {
+const CreatIssueForm=({status})=> {
+  const {id} = useParams();
+  const dispatch = useDispatch();
+  
     const form = useForm({
         defaultValues: {
           issueName: "",
-          descrition:""
+          description:""
         },
       });
 
       const onSubmit = (data) => {
-        console.log('create project data', data);
+        data.projectId = id;
+        dispatch(creatIssue({
+          title: data.issueName,
+          description: data.description,
+          projectID: id,
+          status,
+        }));
+        console.log('create issue------- data', data);
       };
   return (
     <div>   

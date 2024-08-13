@@ -1,27 +1,30 @@
 import api from "@/Redux/config/api"
 import { ACCEPT_INVITATION_REQUEST, ACCEPT_INVITATION_SUCCESS, CREATE_PROJECTS_REQUEST, CREATE_PROJECTS_SUCCESS, DELETE_PROJECTS_REQUEST, DELETE_PROJECTS_SUCCESS, FETCH_PROJECTS_BY_ID_REQUEST, FETCH_PROJECTS_BY_ID_SUCCESS, FETCH_PROJECTS_REQUEST, FETCH_PROJECTS_SUCCESS, INVITE_TO_PROJECTS_REQUEST, INVITE_TO_PROJECTS_SUCCESS, SEARCH_PROJECTS_REQUEST, SEARCH_PROJECTS_SUCCESS } from "./ActionTypes"
 
- export const fetchProjects=({category, tag})=> async (dispatch)=>{
-     dispatch({ type: FETCH_PROJECTS_REQUEST });
 
+
+
+
+export const fetchProjects =  async ({ category, tag }) => {
+     // dispatch({type:FETCH_PROJECTS_REQUEST})
+     console.log(category ,"and", tag);
      try {
-       const {data} = await api.get("/api/projects", { params: { category, tag } });
-       console.log(" projects data:", data); // Adjusted log
-       dispatch({ type: FETCH_PROJECTS_SUCCESS, projects: data });
+       const  {data}  = await api.get("/api/projects", { params: { category, tag } });
+       console.log(data); // Log the response data to the console
+     //   dispatch({type:FETCH_PROJECTS_SUCCESS,data})
+     return data;
      } catch (error) {
        console.log("Error:", error);
-       dispatch({ type: FETCH_PROJECTS_FAILURE, error: error.message }); // Add failure action
+       throw error;
      }
-    
-     
-};
+   };
+
 
 
 
 
 export const searchProjects=(keyword)=> async (dispatch)=>{
      dispatch({type: SEARCH_PROJECTS_REQUEST})
-
      try{
         const {data} = await api.get("/api/projects/search?keyword="+keyword)
        console.log("search projects", data)
@@ -42,6 +45,7 @@ export const createProjects=(projectData)=> async (dispatch)=>{
         const {data} = await api.post("/api/projects",projectData)
        console.log("created projects-----------", data)
        dispatch({type: CREATE_PROJECTS_SUCCESS, projects: data})
+       fetchProjects({});
 
      } catch (error){
           console.log("error", error)
@@ -56,7 +60,7 @@ export const fetchProjectsById=(id)=> async (dispatch)=>{
      dispatch({type: FETCH_PROJECTS_BY_ID_REQUEST})
 
      try{
-        const {data} = await api.get("/api/projects"+id)
+        const {data} = await api.get("/api/projects/"+id)
        console.log("project", data)
        dispatch({type: FETCH_PROJECTS_BY_ID_SUCCESS, projects: data})
 
@@ -72,7 +76,7 @@ export const deleteProject=({projectId})=> async (dispatch)=>{
      dispatch({type: DELETE_PROJECTS_REQUEST})
 
      try{
-        const {data} = await api.delete("/api/projects"+projectId)
+        const {data} = await api.delete("/api/projects/"+projectId)
        console.log("Deleted projects", data)
        dispatch({type: DELETE_PROJECTS_SUCCESS, projectId})
 

@@ -28,7 +28,7 @@ const issuReducer = (state = initalState, action) => {
             return{
                 ...state,
                 loading: false,
-                issue: action.issues,
+                issues: action.issues,
             };
         case actionTypes.FETCH_ISSUES_BY_ID_SUCCESS:
             case actionTypes.UPDATE_ISSUES_STATUS_SUCCESS:
@@ -48,9 +48,15 @@ const issuReducer = (state = initalState, action) => {
                 ...state,
                 loading: false,
                 issues: state.issues.map((issue) =>
-                issue.id === action.issue.is ? action.issue : issue
+                issue.id === action.issues.is ? action.issues : issue
                 ),
             };
+        // case actionTypes.DELETE_ISSUE_SUCCESS:
+        //     return {
+        //         ...state,
+        //         loading: false,
+        //         issues: state.issues.filter((issue) => issue.id !== action.issueId),
+        //     };
         case actionTypes.DELETE_ISSUE_SUCCESS:
             return {
                 ...state,

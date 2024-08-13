@@ -7,6 +7,7 @@ import { comment } from "postcss";
 
 
 export const createComment = (commentData) => {
+    console.log("comm---",commentData)
     return async (dispatch) => {
         dispatch({ type: actionTypes.CREATE_COMMENT_REQUEST });
 
@@ -15,7 +16,7 @@ export const createComment = (commentData) => {
                 `/api/comments`,
                 commentData
             );
-            console.log("comments created", response.data)
+            console.log("comments created success", response.data)
             dispatch({
                 type: actionTypes.CREATE_COMMENT_SUCCESS,
                 comment: response.data,
@@ -62,7 +63,7 @@ export const fetchComments = (issueId)=>{
    );
    dispatch({
     type: actionTypes.FETCH_COMMENT_SUCCESS,
-    comments: response.data
+    comment: response.data
    });
    console.log("fetched comments ", response.data)
         }catch(error){

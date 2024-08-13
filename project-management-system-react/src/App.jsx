@@ -20,9 +20,10 @@ function App() {
 
   useEffect(() =>{
     dispatch(getUser())
-    dispatch(fetchProjects({ }))
+    // dispatch(fetchProjects({ }))
+    fetchProjects({ })
     // console.log("hiii")
-    console.log("fetch",fetchProjects({}));
+    // console.log("fetch",fetchProjects({}));
   },[auth.jwt])
 
   return (

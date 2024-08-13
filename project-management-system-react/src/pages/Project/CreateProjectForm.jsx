@@ -36,6 +36,8 @@ const CreateProjectForm = () => {
 
   const onSubmit = (data) => {
     dispatch(createProjects(data))
+
+    
     console.log('create project data', data);
   };
 
