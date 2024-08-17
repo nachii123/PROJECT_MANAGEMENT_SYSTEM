@@ -19,21 +19,19 @@ const ChatReducer = (state = initalState, action) => {
                 loading: true,
                 error: null
             };
-            
         case actionTypes.FETCH_MESSAGES_SUCCESS:
         case actionTypes.FETCH_CHAT_MESSAGES_SUCCESS:
             return {
              ...state,
              loading: false,
-             messages: [...state.messages, action.message]    
+             messages: [...state.messages, action.messages]    
             };
         case actionTypes.FETCH_CHAT_BY_PROJECT_SUCCESS:
             return{
                 ...state,
                 loading: false,
                 chat: action.chat
-            };
-            
+            };            
         case actionTypes.FETCH_CHAT_MESSAGES_FAILURE:
         case actionTypes.SEND_MESSAGES_FAILURE:
         case actionTypes.FETCH_CHAT_MESSAGES_FAILURE:
@@ -41,8 +39,7 @@ const ChatReducer = (state = initalState, action) => {
                 ...state,
                 loading: false,
                 error: action.error
-            };
-            
+            };            
        default:
         return state;     
     }

@@ -9,19 +9,20 @@ export const sendMessage = (messageData) => {
 
         try{
             const response = await api.post(
-                "api/messages/send", messageData
+                "api/message/send", messageData
             );
             dispatch({
                 type: actionTypes.SEND_MESSAGES_SUCCESS,
-                message: response.data,
+                messages: response.data,
             });
+            console.log("message sent--", response.data)
 
         }catch(error){
             console.log(error);
            dispatch({
             type: actionTypes.SEND_MESSAGES_FAILURE,
             error: error.message
-           }); 
+           });           
         }
     };
 };
@@ -35,11 +36,12 @@ export const fetchChatByProjects = (projectId) => {
         const response = await api.get(
             `/api/projects/${projectId}/chat`
         );
-        console.log("fetch chat", response.data)
+        
         dispatch({
             type : actionTypes.FETCH_CHAT_BY_PROJECT_SUCCESS,
             chat: response.data,
         });
+        console.log("fetch chat is----", response.data)
      }catch(error){
       console.log("error -- ", error)
       dispatch({
@@ -53,13 +55,14 @@ export const fetchChatByProjects = (projectId) => {
 
 
 export const fetchChatMessages = (chatId) => {
+    console.log("chat id is --", chatId)
     return async (dispatch) => {
         dispatch ({type: actionTypes.FETCH_CHAT_MESSAGES_REQUEST});
         try{
             const response = await api.get(
-                `/api/messages/chat/${chatId}`
+                `/api/message/chat/${chatId}`
             );
-            console.log("fetch messages ", response.data)
+            console.log("fetch chat messages----- ", response.data)
             dispatch({
                 type: actionTypes.FETCH_CHAT_MESSAGES_SUCCESS,
                 chatId,
@@ -71,6 +74,7 @@ export const fetchChatMessages = (chatId) => {
                 type: actionTypes.FETCH_CHAT_MESSAGES_FAILURE,
                 error: error.message,
             });
+            console.log("fetching chat's fails")
         }
     };
 };

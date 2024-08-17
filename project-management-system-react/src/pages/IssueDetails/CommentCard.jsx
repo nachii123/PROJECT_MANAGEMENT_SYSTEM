@@ -1,9 +1,16 @@
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
+import { deleteComment } from '@/Redux/Comment/Action'
 import { TrashIcon } from '@radix-ui/react-icons'
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
 const CommentCard = ({item}) => {
+    const dispatch = useDispatch();
+
+    const handleDelete = ()=>{
+        dispatch(deleteComment(item.id))
+    }
   return (
     <div className='flex justify-between'>
         <div className='flex items-center gap-4'>
@@ -17,7 +24,7 @@ const CommentCard = ({item}) => {
                 <p>{item.content}</p>
             </div>
             <div>
-                <Button className="rounded-full" variant="ghost" size="icon">
+                <Button onClick={handleDelete}  className="rounded-full" variant="ghost" size="icon">
                     <TrashIcon/>
                 </Button>
             </div>

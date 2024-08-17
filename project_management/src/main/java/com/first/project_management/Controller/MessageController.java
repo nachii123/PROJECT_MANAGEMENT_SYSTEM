@@ -21,6 +21,8 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
+
+
     @Autowired
     private UserService userService;
 
@@ -43,8 +45,10 @@ public class MessageController {
     }
 
     @GetMapping("/chat/{projectId}")
-    public ResponseEntity<List<Message>> getMessageByChatId(@PathVariable Long projectId)throws Exception{
+    public ResponseEntity<List<Message>> getMessageByprojectId(@PathVariable Long projectId)throws Exception{
         List<Message> messages = messageService.getMessageByProjectId((projectId));
         return ResponseEntity.ok(messages);
     }
+
+
 }

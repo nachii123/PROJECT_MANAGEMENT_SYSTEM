@@ -65,7 +65,7 @@ public class PaymentController {
             paymentLinkRequest.put("notify",notify);
 
             //When customer complete the payment the it will go to the this URL
-            paymentLinkRequest.put("callback_url", "http://localhost:5173/upgrade_plan/success?planType"+planType);
+            paymentLinkRequest.put("callback_url", "http://localhost:5173/upgrade_plan/success?planType="+planType);
 
 
             PaymentLink  paymentLink = rozarpay.paymentLink.create(paymentLinkRequest);

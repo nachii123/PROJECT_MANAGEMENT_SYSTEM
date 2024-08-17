@@ -1,5 +1,6 @@
 package com.first.project_management.Services;
 
+import com.first.project_management.Repository.CharRepository;
 import com.first.project_management.Repository.MessageRepository;
 import com.first.project_management.Repository.UserRepository;
 import com.first.project_management.model.Chat;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +21,15 @@ public class MessageServiceImpl implements MessageService{
     private UserRepository userRepository;
 
     @Autowired
+    private CharRepository charRepository;
+
+
+
+    @Autowired
+    private ChatService chatService;
+    @Autowired
     private ProjectService projectService;
+
 
     @Autowired
     private MessageRepository messageRepository;
@@ -52,4 +60,7 @@ public class MessageServiceImpl implements MessageService{
         List<Message> findByChatIdOrderbyCreatedAtAsc = messageRepository.findByChatIdOrderByCreateAtAsc(chat.getId());
         return findByChatIdOrderbyCreatedAtAsc;
     }
+
+
+
 }

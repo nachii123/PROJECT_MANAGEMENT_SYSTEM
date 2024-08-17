@@ -11,7 +11,7 @@ export const fetchProjects =  async ({ category, tag }) => {
      try {
        const  {data}  = await api.get("/api/projects", { params: { category, tag } });
        console.log(data); // Log the response data to the console
-     //   dispatch({type:FETCH_PROJECTS_SUCCESS,data})
+     //   dispatch({type:FETCH_PROJECTS_SUCCESS, projects: data})
      return data;
      } catch (error) {
        console.log("Error:", error);

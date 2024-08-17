@@ -20,7 +20,7 @@ const ProjectDetails=()=> {
     const { projectDetails, loading } = useSelector(state => state.project); 
     const {id} = useParams();
 
-    console.log("details",projectDetails);
+    // console.log("details",projectDetails);
     useEffect(() => {
         dispatch(fetchProjectsById(id));
     }, [id, dispatch]);

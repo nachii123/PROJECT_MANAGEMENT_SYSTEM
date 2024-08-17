@@ -562,7 +562,7 @@ const fetchFilteredProjects = async () => {
     project.name.toLowerCase().includes(keyword.toLowerCase())
   );
 
-  console.log("pr---", projects);
+  // console.log("pr---", projects);
   // const filteredProjects = projects.filter((project) =>
   //   project.name.toLowerCase().includes(keyword.toLowerCase())
   // );
