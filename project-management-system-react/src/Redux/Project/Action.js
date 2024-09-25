@@ -48,7 +48,7 @@ export const createProjects=(projectData)=> async (dispatch)=>{
        fetchProjects({});
 
      } catch (error){
-          console.log("error", error)
+          console.log("error fails to create", error)
 
      }
 }
@@ -91,8 +91,8 @@ export const inviteToProject=({email, projectId})=> async (dispatch)=>{
      dispatch({type: INVITE_TO_PROJECTS_REQUEST})
 
      try{
-        const {data} = await api.post("/api/projects/invite"+{email,projectId})
-       console.log("Invite", data)
+        const {data} = await api.post("/api/projects/invite", {email,projectId})
+       console.log("Invite projects ", data)
        dispatch({type: INVITE_TO_PROJECTS_SUCCESS, payload: data})
 
      } catch (error){

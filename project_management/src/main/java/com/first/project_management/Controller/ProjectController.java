@@ -110,10 +110,10 @@ public class ProjectController {
     }
 
     @PostMapping("/invite")
-    public ResponseEntity<MessageResponse>inviteProject(@RequestBody Invitation req, @RequestHeader("Authorization")String jwt, @RequestBody Project project) throws Exception {
+    public ResponseEntity<MessageResponse>inviteProject(@RequestBody Invitation req, @RequestHeader("Authorization")String jwt) throws Exception {
 
         User user = userService.findUserProfileByJwt(jwt);
-        invitationService.sendInvitation(req.getEmail(), project.getId());
+        invitationService.sendInvitation(req.getEmail(), req.getProjectId());
 
         MessageResponse res = new MessageResponse("user invitation send");
 

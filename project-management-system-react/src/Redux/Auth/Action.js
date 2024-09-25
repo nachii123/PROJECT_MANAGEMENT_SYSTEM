@@ -13,7 +13,7 @@ export const register = userData=> async(dispatch)=>{
             dispatch({type: REGISTER_SUCCESS, payload: data})
         }
 
-        console.log("register data", data)
+        console.log("register user success", data)
 
     }catch(error){
         console.log()
@@ -31,7 +31,7 @@ export const login = userData=> async(dispatch)=>{
             dispatch({type: LOGIN_SUCCESS, payload: data})
         }
 
-        console.log("Login data", data)
+        console.log("Login user success", data)
 
     }catch(error){
         console.log()

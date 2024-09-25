@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'
 const UpgradeSuccess = () => {
     const navigate = useNavigate();
     // const {subscription} = useSelector(store=> store.subscription);
-    const { subscription } = useSelector(store => store.subscription || { subscription: null });
+    const { subcription } = useSelector(store => store);
 
     const dispatch = useDispatch();
 
@@ -20,10 +20,7 @@ const UpgradeSuccess = () => {
     const paymentId = queryParams.get("payment_id");
     const planType = queryParams.get("planType");
 
-    // useEffect(()=>{
-    //     dispatch(upgradeSubscription({planType}));
-    //     dispatch(getUserSubscription())
-    // })
+  
 
     useEffect(() => {
         if (planType) {
@@ -31,6 +28,10 @@ const UpgradeSuccess = () => {
             dispatch(getUserSubscription());
         }
     }, [dispatch, planType]);
+    // console.log("sub is",subscription?.userSubscription?.subscriptionStartDate)
+    // Assuming your object is stored in a variable called subscription
+console.log("sub is", subcription?.userSubscription);
+
   return (
     <div className='flex justify-center'>
 
@@ -50,9 +51,10 @@ const UpgradeSuccess = () => {
             {/* <p className='text-red-500'>end date:{subscription?.userSubscription?.subscriptionDate}   </p> */}
             {/* <p className=''>plan type: </p> */}
 
-            <p className='text-green-500'>Start date: {subscription?.userSubscription?.subscriptionStartDate}</p>
-                    <p className='text-red-500'>End date: {subscription?.userSubscription?.subscriptionEndDate}</p>
-                    <p>Plan type: {subscription?.userSubscription?.planType}</p>
+            <p className='text-green-500'>Start date: {subcription?.userSubscription?.subcriptionStartDate
+            }</p>
+                    <p className='text-red-500'>End date: {subcription?.userSubscription?.getSubscriptionEndDate}</p>
+                    <p>Plan type: {subcription?.userSubscription?.planType}</p>
 
         </div>
         <Button onClick={()=> navigate("/")}>Go to Home</Button>
